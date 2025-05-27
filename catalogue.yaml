@@ -5,13 +5,9 @@
     http_port: 80
   tasks:
   - name: disable existing nodejs module stream
-    dnf:
-      name: "@nodejs"
-      state: disabled
+    command: dnf module disable nodejs -y
   - name: enable nodejs:20 module stream 
-    dnf:
-      name: "@nodejs:20" #@nodejs refers to the module stream, which allows you to enable, disable, or switch between different versions
-      state: enabled
+    command: dnf module enable nodejs:20 -y
   - name: install nodejs
     dnf:
       name: nodejs
