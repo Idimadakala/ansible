@@ -7,11 +7,11 @@
   - name: disable existing nodejs module stream
     dnf:
       name: "@nodejs"
-      state: disable
+      state: disabled
   - name: enable nodejs:20 module stream 
     dnf:
-      name: "@nodejs" #@nodejs refers to the module stream, which allows you to enable, disable, or switch between different versions
-      state: enable
+      name: "@nodejs:20" #@nodejs refers to the module stream, which allows you to enable, disable, or switch between different versions
+      state: enabled
   - name: install nodejs
     dnf:
       name: nodejs
