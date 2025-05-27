@@ -1,0 +1,15 @@
+- name: mysql-service
+  hosts: mysql
+  become: yes
+  tasks:
+  - name: install mysql-server
+    dnf:
+      name: mysql-server
+      state: installed
+  - name: start and enable mysql-server
+    service:
+      name: mysqld
+      state: started
+      enabled: yes
+  - name: set password
+    command: mysql_secure_installation --set-root-pass RoboShop@1
