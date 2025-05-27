@@ -31,3 +31,38 @@
       mode: 0644
   - name: unzip the catalogue
     command: bash -c "cd /app && ls -la && unzip /tmp/catalogue.zip"
+  - name: update the package.json
+    command: npm install
+  - name: create systemd catalogue service 
+    copy:
+      dest: /etc/systemd/system/catalogue.service
+      content: |
+        [Unit]
+        Description = Catalogue Service
+
+        [Service]
+        User=roboshop
+        Environment=MONGO=true
+        // highlight-start
+        Environment=MONGO_URL="mongodb://mongodb.jsprajampeta.org:27017/catalogue"
+        // highlight-end
+        ExecStart=/bin/node /app/server.js
+        SyslogIdentifier=catalogue
+
+        [Install]
+        WantedBy=multi-user.target
+    notify: reload systemd
+
+  - name: start and enable the catalogue service
+    systemd:
+      name: catalogue
+      enabled: yes
+      state: started
+
+  handlers:
+    - name: reload systemd
+      service:
+        name: catalogue
+        state: restarted
+
+  
