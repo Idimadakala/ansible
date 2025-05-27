@@ -3,14 +3,14 @@
   become: yes
   tasks:
   - name: disable redis module
-    command: 
+    command: dnf module disable redis -y
   - name: enable redis:7 module
-    command:
+    command: dnf module enable redis:7 -y
   - name: install redis
     dnf:
       name: redis
       state: installed
-  - name: edit redis config /etc/redis/redis.conf
+  - name: edit redis config IP Address
     replace:
       path: /etc/redis/redis.conf
       regexp: 'bindIp: 127\.0\.0\.1'
