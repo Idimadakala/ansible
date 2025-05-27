@@ -1,0 +1,23 @@
+- name: redis-service
+  hosts: redis
+  become: yes
+  tasks:
+  - name: disable redis module
+    command: 
+  - name: enable redis:7 module
+    command:
+  - name: install redis
+    dnf:
+      name: redis
+      state: installed
+  - name: edit redis config /etc/redis/redis.conf
+    replace:
+      path: /etc/redis/redis.conf
+      regexp: 'bindIp: 127\.0\.0\.1'
+      replace: 'bindIp: 0.0.0.0'
+  - name: start and enable redis service
+    service:
+      name: redis
+      state: started
+      enabled: yes
+      
