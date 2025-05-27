@@ -1,0 +1,16 @@
+- name: install nginx server on ansible node
+  hosts: web
+  become: yes
+  vars:
+    http_port: 80
+  tasks:
+  - name: install nginx server
+    dnf:
+      name: nginx
+      state: installed
+  - name: start the nginx server
+    service:
+      name: nginx
+      state: started
+
+    

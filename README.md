@@ -19,5 +19,19 @@ ansible all -i ansible-node.jsprajampeta.org -e ansible_user= -e ansible_passwor
 ansible all -i 3.88.24.223 -e ansible_user= -e ansible_password= -m ping
 ansible all -i 172.31.40.165, -e ansible_user= -e ansible_password= -m ping
 
+-- dnf: value of state must be one of: absent, installed, latest, present, removed, got: started
+
+ansible all -b -i ansible-node.jsprajampeta.org, -e ansible_user=ec2-user -e ansible_password=DevOps321 -m dnf -a "name=nginx state=installed"
+
+-- service: "value of state must be one of: reloaded, restarted, started, stopped, got: removed"
+ansible all -b -i ansible-node.jsprajampeta.org, -e ansible_user=ec2-user -e ansible_password=DevOps321 -m service -a "name=nginx state=started"
+
+--dnf
+
+ ansible all -b -i ansible-node.jsprajampeta.org, -e ansible_user=ec2-user -e ansible_password=DevOps321 -m dnf -a "name=nginx state=removed"
+
+
+
+
 
 ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password= 01-playbook.yaml
