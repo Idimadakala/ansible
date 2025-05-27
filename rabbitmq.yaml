@@ -4,7 +4,7 @@
   tasks:
   - name: set-up the repo for rabbitmq mysql_secure_installation
     copy:
-      path: /etc/yum.repos.d/rabbitmq.repo
+      dest: /etc/yum.repos.d/rabbitmq.repo
       content: |
         [modern-erlang]
         name=modern-erlang-el9
