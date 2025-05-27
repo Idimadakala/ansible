@@ -1,0 +1,22 @@
+- name: mongodb 
+  hosts: mongodb
+  become: yes
+  tasks:
+  - name: setup the mongodb repo file
+    copy:
+      dest: /etc/yum.repos.d/mongo.repo
+      content: |
+        [mongodb-org-7.0]
+        name=MongoDB Repository
+        baseurl=https://repo.mongodb.org/yum/redhat/9/mongodb-org/7.0/x86_64/
+        enabled=1
+        gpgcheck=0
+  - name: install mongodb-org
+    dnf:
+      name: mongodb-org
+      state: installed
+  - name: start and enable mongodb
+    service:
+      name: mongod
+      enabled: yes
+      state: started
