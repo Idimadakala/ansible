@@ -10,6 +10,11 @@
     dnf:
       name: redis
       state: installed
+  - name: start and enable redis service
+    service:
+      name: redis
+      state: started
+      enabled: yes
   - name: edit redis config IP Address
     replace:
       path: /etc/redis/redis.conf
@@ -20,9 +25,10 @@
       path: /etc/redis/redis.conf
       regexp: 'protected-mode yes'
       replace: 'protected-mode no'
-  - name: start and enable redis service
-    service:
+  - name: restart redis service
+    systemd:
       name: redis
-      state: started
-      enabled: yes
+      state: restarted
+
+    
       
