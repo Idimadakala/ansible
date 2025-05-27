@@ -13,8 +13,13 @@
   - name: edit redis config IP Address
     replace:
       path: /etc/redis/redis.conf
-      regexp: 'bindIp: 127\.0\.0\.1'
-      replace: 'bindIp: 0.0.0.0'
+      regexp: 'bind 127\.0\.0\.1'
+      replace: 'bind 0.0.0.0'
+  - name: edit redis config protected mode
+    replace:
+      path: /etc/redis/redis.conf
+      regexp: 'protected-mode yes'
+      replace: 'protected-mode no'
   - name: start and enable redis service
     service:
       name: redis
