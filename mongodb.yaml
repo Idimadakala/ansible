@@ -20,3 +20,12 @@
       name: mongod
       enabled: yes
       state: started
+  - name: edit the /etc/mongod.conf 
+    replace: 
+      path: /etc/mongod.conf
+      regExp: 'bindIp: 127\.0\.0\.1'
+      replace: 'bindIp: 0.0.0.0'
+  - name: restart mongodb service
+    systemd:
+      name: mongod
+      state: restarted
