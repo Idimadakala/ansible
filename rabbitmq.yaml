@@ -1,0 +1,58 @@
+- name: rabbitmq-service
+  hosts: rabbitmq
+  become: yes
+  tasks:
+  - name: set-up the repo for rabbitmq mysql_secure_installation
+    copy:
+      path: /etc/yum.repos.d/rabbitmq.repo
+      content: |
+        [modern-erlang]
+        name=modern-erlang-el9
+        baseurl=https://yum1.novemberain.com/erlang/el/9/$basearch
+                https://yum2.novemberain.com/erlang/el/9/$basearch
+                https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el/9/$basearch
+        enabled=1
+        gpgcheck=0
+
+        [modern-erlang-noarch]
+        name=modern-erlang-el9-noarch
+        baseurl=https://yum1.novemberain.com/erlang/el/9/noarch
+                https://yum2.novemberain.com/erlang/el/9/noarch
+                https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el/9/noarch
+        enabled=1
+        gpgcheck=0
+
+        [modern-erlang-source]
+        name=modern-erlang-el9-source
+        baseurl=https://yum1.novemberain.com/erlang/el/9/SRPMS
+                https://yum2.novemberain.com/erlang/el/9/SRPMS
+                https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el/9/SRPMS
+        enabled=1
+        gpgcheck=0
+
+        [rabbitmq-el9]
+        name=rabbitmq-el9
+        baseurl=https://yum2.novemberain.com/rabbitmq/el/9/$basearch
+                https://yum1.novemberain.com/rabbitmq/el/9/$basearch
+                https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/rpm/el/9/$basearch
+        enabled=1
+        gpgcheck=0
+
+        [rabbitmq-el9-noarch]
+        name=rabbitmq-el9-noarch
+        baseurl=https://yum2.novemberain.com/rabbitmq/el/9/noarch
+                https://yum1.novemberain.com/rabbitmq/el/9/noarch
+                https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/rpm/el/9/noarch
+        enabled=1
+        gpgcheck=0
+  - name: install rabbitmq-server
+    dnf:
+      name: rabbitmq-server
+      state: installed
+  - name: start and enable rabbitmq-server
+    service:
+      name: rabbitmq-server
+      state: started
+      enabled: yes
+  - name: create an user
+    command: "rabbitmqctl add_user roboshop roboshop123 && rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*""
