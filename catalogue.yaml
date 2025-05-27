@@ -1,7 +1,7 @@
 - name: catalogue-service
   hosts: backend
   become: yes
-  var:
+  vars:
     http_port: 80
   tasks:
   - name: disable existing nodejs module stream
