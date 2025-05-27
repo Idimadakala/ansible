@@ -12,3 +12,22 @@
     dnf:
       name: nodejs
       state: installed
+  - name: create roboshop user
+    user:
+      name: roboshop
+      home: /app
+      shell: /sbin/nologin
+      system: yes
+      comment: "roboshop user created"
+  - name: create /app folder
+    file:
+      path: /app
+      state: directory
+      mode: '0755'
+  - name: download catalogue-v3
+    get_url:
+      url: "https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip"
+      dest: /tmp/catalogue.zip
+      mode: 0644
+  - name: unzip the catalogue
+    command: bash -c "cd /app && ls -la && unzip /tmp/catalogue.zip"
