@@ -1,5 +1,5 @@
 - name: local-connection
-  hosts: local
+  hosts: local #executes in the same Ansible server.
   connection: local
   vars_files:
   - variables.yaml

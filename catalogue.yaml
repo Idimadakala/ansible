@@ -28,9 +28,11 @@
     get_url:
       url: "https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip"
       dest: /tmp/catalogue.zip
-      mode: 0644
+      mode: '0644'
+      
   - name: unzip the catalogue
-    command: bash -c "cd /app && ls -la && unzip /tmp/catalogue.zip"
+    command: bash -c "cd /app && unzip /tmp/catalogue.zip && ls -la"
+
   - name: update the package.json
     command: npm install
   - name: create systemd catalogue service 
@@ -52,12 +54,6 @@
         [Install]
         WantedBy=multi-user.target
     notify: reload systemd
-
-  - name: start and enable the catalogue service
-    systemd:
-      name: catalogue
-      enabled: yes
-      state: started
 
   handlers:
     - name: reload systemd
