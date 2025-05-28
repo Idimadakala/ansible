@@ -1,9 +1,8 @@
 - name: local-connection
   hosts: local
   connection: local
-  vars:
-    NAME: SAI SRINIVAS IDIMADAKALA
-    ROLE: Engineer
+  vars_files:
+  - variables.yaml
   tasks:
   - name: enabling debug
     debug: 
