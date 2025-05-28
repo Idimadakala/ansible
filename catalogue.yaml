@@ -1,8 +1,6 @@
 - name: catalogue-service
   hosts: backend
   become: yes
-  vars:
-    http_port: 80
   tasks:
   - name: disable existing nodejs module stream
     command: dnf module disable nodejs -y
@@ -29,7 +27,7 @@
       url: "https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip"
       dest: /tmp/catalogue.zip
       mode: '0644'
-      
+
   - name: unzip the catalogue
     command: bash -c "cd /app && unzip /tmp/catalogue.zip && ls -la"
 
