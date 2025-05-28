@@ -32,7 +32,7 @@
     command: bash -c "cd /app && unzip /tmp/catalogue.zip && ls -la"
 
   - name: update the package.json
-    command: npm install
+    command: bash -c "cd /app && npm install"
   - name: create systemd catalogue service 
     copy:
       dest: /etc/systemd/system/catalogue.service
