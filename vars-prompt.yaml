@@ -1,0 +1,14 @@
+- name: Reading values from prompt
+  hosts: local
+  connection: local
+  vars_prompt:
+  - name: Username
+    prompt: enter the Username
+    private: false
+  - name: password
+    prompt: enter the password
+    private: true
+  tasks:
+  - name: printing the values
+    debug:
+      msg: "loggin in as username: {{ Username }}"
