@@ -1,9 +1,15 @@
 - name: local-connection
   hosts: local
   connection: local
+  vars:
+    NAME: SAI SRINIVAS IDIMADAKALA
+    ROLE: Engineer
   tasks:
   - name: enabling debug
     debug: 
       msg: "enabling the debug"
   - name: enabling ping
     ping:
+  - name: printing the variables
+    debug:
+      msg: "Hello {{ NAME }} and his role {{ ROLE }}"
