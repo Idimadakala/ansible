@@ -1,0 +1,9 @@
+- name: local-connection
+  hosts: local
+  connection: local
+  tasks:
+  - name: enabling debug
+    debug: 
+      msg: "enabling the debug"
+  - name: enabling ping
+    ping:

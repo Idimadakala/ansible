@@ -29,11 +29,34 @@ ansible all -b -i ansible-node.jsprajampeta.org, -e ansible_user=ec2-user -e ans
 --dnf
 
  ansible all -b -i ansible-node.jsprajampeta.org, -e ansible_user=ec2-user -e ansible_password=DevOps321 -m dnf -a "name=nginx state=removed"
-
+---
 sudo ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password= 01-playbook.yaml
 
 sudo ansible-playbook -i inventory.ini -e ansible-user=ec2-user -e ansible-password=DevOps321 02-install-nginx.yaml
 
 -- mongo db
 sudo ansible-playbook -i inventory.ini -e ansible-user=ec2-user -e ansible-password=DevOps321 mongodb.yaml
-
+--- 
+redis
+sudo ansible-playbook -i inventory.ini -e ansible-user=ec2-user -e ansible-password=DevOps321 redis.yaml
+---
+mysql
+sudo ansible-playbook -i inventory.ini -e ansible-user=ec2-user -e ansible-password=DevOps321 mysql.yaml
+---
+rabbitmq
+sudo ansible-playbook -i inventory.ini -e ansible-user=ec2-user -e ansible-password=DevOps321 rabbitmq.yaml
+---
+catalogue
+sudo ansible-playbook -i inventory.ini -e ansible-user=ec2-user -e ansible-password=DevOps321 catalogue.yaml
+---
+user
+---
+cart
+---
+payment
+---
+shipping
+---
+dispatch
+---
+frontend
