@@ -4,8 +4,8 @@
   tasks:
   - name: install nginx when redhat
     dnf:
-      - name: nginx
-        state: installed
+      name: nginx
+      state: installed
     when: ansible_os_family == "RedHat"
   - name: install nginx when debian
     apt:
