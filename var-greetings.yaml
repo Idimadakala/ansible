@@ -1,0 +1,9 @@
+- name: printing greetings
+  hosts: local
+  become: yes
+  vars:
+    GREETINGS: "Hello From vars"
+  tasks:
+  - name: printing greetings from args, vars_file, vars, tasks
+    debug:
+      msg: "{{ GREETINGS }}"
