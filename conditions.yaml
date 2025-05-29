@@ -3,12 +3,12 @@
   become: yes
   tasks:
   - name: install nginx when redhat
-    debug:
+    dnf:
       - name: nginx
         state: installed
     when: ansible_os_family == "RedHat"
   - name: install nginx when debian
-    debug:
+    apt:
       name: nginx
       state: installed
     when: ansible_os_family == "Debian"
