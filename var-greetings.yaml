@@ -1,5 +1,6 @@
 - name: printing greetings
   hosts: local
+  connection: local
   become: yes
   vars:
     GREETINGS: "Hello From vars"
