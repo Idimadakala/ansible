@@ -4,7 +4,7 @@
   tasks:
   - name: loops
     debug:
-      msg: "{{ Hello, item}}" # item is reserved keyword
+      msg: "Hello, {{ item }}" # item is reserved keyword
     loop:
     - sai
     - srinivas
