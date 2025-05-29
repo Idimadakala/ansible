@@ -1,0 +1,11 @@
+- name: loops
+  hosts: local
+  become: yes
+  tasks:
+  - name: loops
+    debug:
+      msg: "{{ Hello, item}}" # item is reserved keyword
+    loop:
+    - sai
+    - srinivas
+    - idimadakala
