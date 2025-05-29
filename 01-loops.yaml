@@ -3,9 +3,9 @@
   become: yes
   tasks:
   - name: install packages
-    ansible.builtin.package:
+    package:
       name: "{{ item.name }}"
       state: "{{ item.state }}"
     loop:
-    - { name:'nginx', state:'absent'}
-    - { name:'zip', state:'present'}
+    - { name:"nginx", state:"absent"}
+    - { name:"zip", state:"present"}
