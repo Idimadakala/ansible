@@ -1,0 +1,10 @@
+- name: more about loops
+  hosts: local
+  become: yes
+  tasks:
+    package:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    loop:
+    - { name:'nginx',state:'removed'}
+    - { name:'zip',state:'present'}
